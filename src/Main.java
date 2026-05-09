@@ -1,27 +1,59 @@
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.util.Scanner;
 
-public class Main{
-    private static final String url = "jdbc:mysql://127.0.0.1:3306/travel_company";
-    private static final String user = "root";
-    private static final String password = "your_password";
+public class Main {
+
     public static void main(String[] args) {
-        try{
-            Class.forName("com.mysql.cj.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
-            System.out.println(e.getMessage());
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("=== Travel Management System Started ===");
+
+        while (true) {
+
+            System.out.println("\n1. Add Bus");
+            System.out.println("2. Add Passenger");
+            System.out.println("3. Booking");
+            System.out.println("4. View Booking");
+            System.out.println("5. Cancel Booking");
+            System.out.println("6. View Seats");
+            System.out.println("7. Exit");
+
+            System.out.print("Enter choice: ");
+            int choice = sc.nextInt();
+
+            switch (choice) {
+
+                case 1:
+                    AddBus.main(null);
+                    break;
+
+                case 2:
+                    AddPassenger.main(null);
+                    break;
+
+                case 3:
+                    Booking.main(null);
+                    break;
+
+                case 4:
+                    ViewBooking.main(null);
+                    break;
+
+                case 5:
+                    CancelBooking.main(null);
+                    break;
+
+                case 6:
+                    ViewSeats.main(null);
+                    break;
+
+                case 7:
+                    System.out.println("Exiting...");
+                    return;
+
+                default:
+                    System.out.println("Invalid choice");
+            }
         }
-
-        try{
-            Connection connection = DriverManager.getConnection(url,user,password);
-
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-
-
-
-
     }
 }
